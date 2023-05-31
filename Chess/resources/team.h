@@ -6,6 +6,7 @@ using namespace std;
 // This is to simplify all of the other variables that go into each piece
 struct pos {
     int x, y;
+    pos(int x, int y) : x(x), y(y) {}
 };
 
 // This is the pawn class
@@ -67,6 +68,8 @@ private:
 // This is the king class
 class king {
 public:
+
+    king();
     king(pos startingLocation);
     ~king();
 
@@ -75,9 +78,10 @@ private:
     pos* piecePosition;
 };
 
+/*
 class team {
 public:
-    team();
+    team(bool isWhite);
     ~team();
 
 private:
@@ -87,4 +91,7 @@ private:
     vector<bishop> bishops;
     vector<queen> queens;
     king theKing;
+
+    bool white;
 };
+*/

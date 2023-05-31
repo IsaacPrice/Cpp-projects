@@ -3,7 +3,6 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Programs\\C++\\resources/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [

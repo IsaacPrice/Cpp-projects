@@ -3,6 +3,11 @@
 // on this laptop is abolutely horrid. Maybe making the cursor also be black would help, but I think
 // That that would kinda be counter-productive
 int main() {
+    string userInput;
+
+    cout << "Welcome to chess! press enter to start the game." << endl;
+    cin >> userInput;
+
     chess game;
 
     return 0;
