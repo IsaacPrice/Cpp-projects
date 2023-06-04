@@ -21,6 +21,7 @@ public:
     void drawBoard();
     bool movePiece(pos piece, pos location);
     bool verify(string toVerify);
+    string getPiece(pos location);
 
 private:
     vector<vector<string>> board;
@@ -43,7 +44,7 @@ void chess::drawBoard() {
     
     for (auto& xVect : board) {
         number++;
-        cout << number << " ";
+        cout <<  number << " ";
         for (auto& piece : xVect) {
             if (piece == "wpawn") {
                 cout << "\u265f" << " ";
@@ -93,10 +94,83 @@ void chess::drawBoard() {
 bool chess::movePiece(pos piece, pos location) {
     string pieceName;
 
-    pieceName = board.at(piece.y - 1).at(piece.x - 1);
+    // Gets the name of the desired piece
+    pieceName = getPiece(piece);
+
+    // Checks the movement if it is a pawn
+    if (pieceName == "wpawn") {
+        // Means that is is going forward
+        if (location.y == piece.y - 1) {
+            // Means that it's trying to go straight forward
+            if (location.x == piece.x) {
+                // Means that it's trying to go to a place where the white already is
+                if (getPiece(location)[0] != 'w') {
+                    // all good
+                }
+                else {
+                    return false;
+                }
+            }
+            else if (abs(location.x - piece.x) == 1) {
+                // Means that it's tryin to capture a black piece
+                if (getPiece(location)[0] == 'b') {
+                    // all good
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+        else if (location.x == piece.x && piece.y - location.y == 2) {
+            // This means that it went 2 forward, so it's a valid move
+        }
+        else {
+            // Means that it's trying to go backward, which the pawn cannot do
+            return false;
+        }
+    }
+    if (pieceName == "bpawn") {
+        // Means that is is going forward
+        if (location.y == piece.y + 1) {
+            // Means that it's trying to go straight forward
+            if (location.x == piece.x) {
+                // Means that it's trying to go to a place where the white already is
+                if (getPiece(location)[0] != 'b') {
+                    // all good
+                }
+                else {
+                    return false;
+                }
+            }
+            else if (abs(location.x - piece.x) == 1) {
+                // Means that it's tryin to capture a black piece
+                if (getPiece(location)[0] == 'w') {
+                    // all good
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+        else if (location.x == piece.x && location.y - piece.y == 2) {
+            // This means that it went 2 forward, so it's a valid move
+        }
+        else {
+            // Means that it's trying to go backward, which the pawn cannot do
+            return false;
+        }
+    }
+
     board.at(piece.y - 1).at(piece.x - 1) = "";
 
     board.at(location.y - 1).at(location.x - 1) = pieceName;
+    return true;
 }
 
 // This makes sure that the string is valid
@@ -107,6 +181,11 @@ bool chess::verify(string toVerify) {
     else {
         return false;
     }
+}
+
+// Looks through the board and returns the string
+string chess::getPiece(pos location) {
+    return board.at(location.y - 1).at(location.x - 1);
 }
 
 // This gets the users input and formats it to a position
@@ -156,7 +235,9 @@ int main() {
         } 
         destination = decipher(userInput);
 
-        game.movePiece(selected, destination);
+        if (!game.movePiece(selected, destination)) {
+            cout << "invalid move" << endl;
+        }
     }
 
     return 0;
