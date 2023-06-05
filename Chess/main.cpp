@@ -166,6 +166,66 @@ bool chess::movePiece(pos piece, pos location) {
             return false;
         }
     }
+    // Checks the movment if it is a rook
+    if (pieceName == "wrook" || pieceName == "brook") {
+        pos test;
+        // Makes sure that is only going in one direction
+        if (piece.x == location.x) {
+            // means that it's going in the y direction
+            test.x = piece.x;
+            test.y = piece.y;
+            for (int i = 0; i < abs(piece.y - location.y) - 1; i++) {
+                if (piece.y - location.y > 0) {
+                    test.y--;
+                }
+                else {
+                    test.y++;
+                }
+
+                // This means that it hit a piece on the path, whcih isn's allowed
+                if (getPiece(test) != "") {
+                    return false;
+                }
+            }
+            
+            if (getPiece(location) != "") {
+                if (getPiece(location)[0] == pieceName[0]) {
+                    // This means that it hit the same piece, which isnt allowed
+                    return false;
+                }
+            }
+        }
+        else if (piece.y == location.y) {
+            // Means that it's going in the x direction
+            test.y = piece.y;
+            test.x = piece.x;
+            for (int i = 0; i < abs(piece.x - location.x) - 1; i++) {
+                if (piece.x - location.x > 0) {
+                    test.x--;
+                }
+                else {
+                    test.x++;
+                }
+
+                // This means that it hit a piece on the path, whcih isn's allowed
+                if (getPiece(test) != "") {
+                    return false;
+                }
+            }
+            
+            if (getPiece(location) != "") {
+                if (getPiece(location)[0] == pieceName[0]) {
+                    // This means that it hit the same piece, which isnt allowed
+                    return false;
+                }
+            }
+        }
+        else {
+            // means that its going in an invalid direction
+            return false;
+        }
+    }
+
 
     board.at(piece.y - 1).at(piece.x - 1) = "";
 
