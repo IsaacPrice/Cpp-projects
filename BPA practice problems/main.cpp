@@ -4,8 +4,6 @@
 #include<string>
 using namespace std;
 
-// If i come back to this, resume with 70 min
-
 #pragma region item class
 
 class item {
@@ -121,29 +119,79 @@ void item::setQuantity(int Quantity) {
 
 // This will read the csv file and return the filled vector
 vector<item> readCsv(string FilePath) {
-    ifstream File;
+    vector<item> items;
+    ifstream File(FilePath);
     string Line, cacheWord;
-    item cacheItem();
+    item cacheItem;
     int column;
 
     cacheWord = "";
     // This goes through the file, line by line
-    while(getline(File, Line)) {
+    while (getline(File, Line)) {
+        cout << "Got into the mainframe" << endl;
         column = 0;
         // Gets the ID
         while (Line[column] != ',') {
             cacheWord += Line[column];
             column++;
         }
-        cacheItem.setID(10);
+        cout << cacheWord << endl;
+        cacheItem.setID(stoi(cacheWord));
         cacheWord = "";
+        column++;
 
+        // Gets the name
+        while (Line[column] != ',') {
+            cacheWord += Line[column];
+            column++;
+        }
+        cout << cacheWord << endl;
+        cacheItem.setName(cacheWord);
+        cacheWord = "";
+        column++;
+
+        // Gets the price
+        while (Line[column] != ',') {
+            cacheWord += Line[column];
+            column++;
+        }
+        cout << cacheWord << endl;
+        cacheItem.setPrice(stod(cacheWord));
+        cacheWord = "";
+        column++;
+
+        // Gets the quantity
+        while (column < Line.size()) {
+            cacheWord += Line[column];
+            column++;
+        }
+        cout << cacheWord << endl;
+        cacheItem.setPrice(stoi(cacheWord));
+        cacheWord = "";
+        column++;
+
+        // Finally adds the item to the vector
+        items.push_back(cacheItem);
     }
+
+    return items;
 }
 
 int main() {
     vector<item> inventory = readCsv("storage.csv");
+    ifstream file("storage.csv");
+    string line;
 
+    while (getline(file, line)) {
+        cout << line << endl;
+    }
+    
+
+    // This prints out all the items in the csv file
+    for (auto& thingie : inventory) {
+        cout << "got into the mainframe" << endl;
+        cout << thingie.getID() << ", " << thingie.getName() << ", " << thingie.getPrice() << ", " << thingie.getQuantity() << endl;
+    }
 
     return 0;
 }
