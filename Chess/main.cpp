@@ -11,6 +11,8 @@ using namespace std;
 struct pos {
     int x;
     int y;
+    pos(int x, int y) : x(x), y(y) {};
+    pos() : x(0), y(0) {};
 };
 
 class chess {
@@ -166,7 +168,7 @@ bool chess::movePiece(pos piece, pos location) {
             return false;
         }
     }
-    // Checks the movment if it is a rook
+    // Checks the movement if it is a rook
     if (pieceName == "wrook" || pieceName == "brook") {
         pos test;
         // Makes sure that is only going in one direction
@@ -225,7 +227,74 @@ bool chess::movePiece(pos piece, pos location) {
             return false;
         }
     }
+    // Checks the movement if it is a knight
+    if (pieceName == "wknight" || pieceName == "bknight") {
+        vector<pos> possibleMoves = { // These are all of the possible moves for the knight to go
+        pos(piece.x += 2, piece.y += 1),
+        pos(piece.x += 2, piece.y -= 1),
+        pos(piece.x += 1, piece.y -= 2),
+        pos(piece.x -= 1, piece.y -= 2),
+        pos(piece.x -= 2, piece.y -= 1),
+        pos(piece.x -= 2, piece.y += 1),
+        pos(piece.x -= 1, piece.y += 2),
+        pos(piece.x += 1, piece.y += 2)
+        };
+        bool found = false;
 
+        // Loops through and checks if any of these are availible to move
+        for (auto& possible : possibleMoves) {
+            if (possible.x == location.x && possible.y == location.y) {
+                if (getPiece(location)[0] != getPiece(piece)[0] && getPiece(location) == "") {
+                    found = true;
+                }
+            }
+        }
+
+        if (!found) {
+            return false;
+        }
+    }
+    // Checks the movement if it is a bishop
+    if (pieceName == "wbishop" || pieceName == "bbishop") {
+        // If one of the directions is the same, it will cause an error
+        if (piece.x == location.x || piece.y == location.y) {
+            return false;
+        }
+
+        // Checks if the movement is going in the correct direction
+        if (abs(piece.x - location.x) / abs(piece.y - location.y) == 1) {
+            // Checks every move until it gets to the location
+            pos test;
+            test = piece;
+            for (int i = 0; i < abs(piece.x - location.x) - 1; i++) {
+                if (location.x - piece.x < 0) {
+                    test.x -= 1;
+                }
+                else {
+                    test.x += 1;
+                }
+
+                if (location.y - piece.y < 0) {
+                    test.y -= 1;
+                }
+                else {
+                test.y += 1;
+                }
+
+                if (getPiece(test) != "") {
+                    return false;
+                }
+            }
+            
+            // This means that it hit its own type of piece
+            if (!(getPiece(location)[0] != getPiece(piece)[0] || getPiece(location) == "")) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
 
     board.at(piece.y - 1).at(piece.x - 1) = "";
 
