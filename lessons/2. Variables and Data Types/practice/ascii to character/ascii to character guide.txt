@@ -1,0 +1,7 @@
+in this problem, you are going to make a program to convert the users desired number to an alphabetic letter.
+
+here are the steps:
+    1. Declare a variable to hold the users number
+    2. Prompt the user to enter their number
+    3. Make an input for the user to give their number
+    4. Print the result on the screen
