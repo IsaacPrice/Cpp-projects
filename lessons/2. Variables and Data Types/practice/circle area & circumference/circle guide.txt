@@ -1,0 +1,8 @@
+This program will get the radius of the circle from the user, and calculate the area and circumference, 
+then print it onto the screen
+
+here are the steps:
+    1. Create 3 variables to hold the radius, area, and perimeter
+    2. Prompt the user and get the radius
+    3. Calculate the area and perimeter
+    4. Display the results onto the screen
