@@ -1,0 +1,7 @@
+The program will take the two numbers the user wants, then adds them together
+
+here are the steps:
+    1. Declare the variables for the two numbers the user wants, and one for the sum
+    2. Prompt the user for both of the numbers
+    3. Add the numbers together, and assign the value to the empty variable
+    4. Print the result to the screen

@@ -1,1 +1,1 @@
-// This program will take the two numbers the user wants, and the adds them together
+// This program will take the two numbers the user wants, then adds them together

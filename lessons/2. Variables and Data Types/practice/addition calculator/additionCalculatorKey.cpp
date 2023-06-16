@@ -16,6 +16,7 @@ int main() {
     // Adds the numbers together
     sum = number1 + number2;
 
+    // Prints the sum onto the console
     cout << "Sum: " << sum << endl;
 
     return 0;
