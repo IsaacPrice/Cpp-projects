@@ -2,6 +2,7 @@
 #include<iostream>
 using namespace std;
 
+// This creates a global variable that is the value of PI
 double PI = 3.14159265358979323846;
 
 int main() {
@@ -13,6 +14,12 @@ int main() {
     cin >> radius;
 
     // Calculates the area and circumference
+    double area = PI * radius * radius;
+    double circumference = 2 * PI * radius;
+
+    // Prints the results onto the screen
+    cout << "Area: " << area << endl;
+    cout << "Circumference: " << circumference << endl;
 
     return 0;
 }
