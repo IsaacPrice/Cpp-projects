@@ -1,1 +1,6 @@
 This program will take the users rectangles width and height, and calculate the area and perimeter
+
+here are the steps:
+    1. Declare the variables for the users width and height, and also for the area and perimeter
+    2. Prompt the user for the width and height, and assign them to the corresponding variables
+    3. Perform the calculations and print them onto the screen
