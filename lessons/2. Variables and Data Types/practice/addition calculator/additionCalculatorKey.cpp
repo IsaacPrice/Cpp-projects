@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    int number1, number2, result; // Defining the variables for the addition
+    int number1, number2, sum; // Defining the variables for the addition
 
     // Prompts the user and gets the first number
     cout << "Enter the first number to add: ";
@@ -14,9 +14,9 @@ int main() {
     cin >> number2;
 
     // Adds the numbers together
-    result = number1 + number2;
+    sum = number1 + number2;
 
-    cout << "Result: " << result << endl;
+    cout << "Sum: " << sum << endl;
 
     return 0;
 }
