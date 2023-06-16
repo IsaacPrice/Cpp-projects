@@ -20,7 +20,7 @@ int main() {
         bool isPrime = true;
 
         // The number has to start at 2, since 0 will give an error, and 1 doesn't mean that it's prime
-        // Also, when the i*i used, it is to make sure that it isn't repeating 
+        // Also, when the i*i used, it is to make sure that it isn't repeating the same numbers
         for (unsigned int i = 2; i * i < userNumber; i++) { 
             if (userNumber % i == 0) { // When it devides evenly, it means that its not a prime
                 isPrime = false;
