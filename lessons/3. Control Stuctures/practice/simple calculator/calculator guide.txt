@@ -1,0 +1,8 @@
+This program will get two numbers from the user, then adds, subtracts, mulitplies, or divides
+based on what the user enters
+
+here are the steps:
+    1. Create variables for the two numbers, and the operator (+, -, *, /)
+    2. Prompt the user to get the previously defined variables
+    3. Use a conditional (if else if, switch case) to determine what operator the user wanted
+    4. Perform the calculation and print it on the screen

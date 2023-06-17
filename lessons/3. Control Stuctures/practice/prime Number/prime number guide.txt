@@ -1,0 +1,16 @@
+This program will get the user's number and determine if it is prime or not
+
+A prime number will never have any factors other than 1 and itself
+
+here are the steps:
+    1. Define the variable to hold the number to check
+    2. Determine if the number isn't less than or equal to one (would mean that it isn't a prime)
+    3. Use a loop to check all of the numbers from 2 to the number (checking would be diving by the number you're
+    checking, and if there isn't a remainder then its not a prime)
+    4. Print the result
+
+here are the extras:
+    1. To make the program to run until the user exits, you make a loop that runs forever, tell the user that -1
+    is to exit, and then use a break function if they entered it
+    2. In order to determine if the numbers don't repeat, the most effective way is if the number your currently
+    checking sqared is over the original number, then it will start repeating numbers (i * i <= number)
